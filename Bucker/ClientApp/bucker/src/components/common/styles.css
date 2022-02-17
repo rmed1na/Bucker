@@ -1,0 +1,79 @@
+*, p, a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #1F1F1F;
+    color: #E6E6E6;
+}
+
+a { text-decoration: none; }
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
+hr {
+    border: 0;
+    border-top: 1px solid rgb(86,86,86);
+}
+
+button img {
+    max-height: 100%;
+    width: auto;   
+}
+
+button img,
+span {
+    background-color: inherit;
+}
+
+a.styled {
+    background-color: #2E2E2E;
+    padding: 6px;
+    border-radius: 3px;
+}
+
+.root {
+    position: relative;
+}
+
+.textbox {
+    background-color: #3b3b3b;
+    border: none;
+    border-radius: 3px;
+    height: 45px;
+    width: 250px;
+    text-align: center;
+    padding: 0 7px;
+}
+
+.button {
+    width: 254px;
+    height: 40px;
+    line-height: 1.2em;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    transition: 0.2s all;
+}
+
+.button:active {
+    transform: scale(0.90);
+}
+
+.button.green { background-color: #127350; }
+.button.red { background-color: #9D262B; }
+.button.yellow { 
+    background-color: #ffe11b;
+    color: #1F1F1F;
+}
+.button.grey { background-color: #565656; }
+.margin-up { margin-top: 35px; }
+.margin-bottom { margin-bottom: 35px; }
+.debug,
+.debug-r { border: 1px solid red; }
+.debug-g { border: 1px solid green; }
+.debug-b { border: 1px solid blue; }
+.component {
+    width: 80%;
+    margin: 0 auto;   
+}

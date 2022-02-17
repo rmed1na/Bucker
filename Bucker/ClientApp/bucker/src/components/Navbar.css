@@ -1,0 +1,25 @@
+.navbar nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: sticky;
+    box-shadow: 0px 7px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar nav a {
+    margin: 0 5px;
+    font-size: 1em;
+}
+
+.navbar nav a.position-right {
+    margin-left: auto;
+}
+
+#logout {
+    color: rgb(136, 136, 136);
+}
+
+#nav_icon {
+    height: 33px;
+}

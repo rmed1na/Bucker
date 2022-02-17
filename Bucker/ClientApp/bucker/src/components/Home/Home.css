@@ -1,0 +1,42 @@
+.home .welcome {
+    width: 80%;
+    margin: 70px auto;
+    padding: 0 20px;
+}
+
+.home .menu {
+    width: 80%;
+    margin: 70px auto;
+    display: flex;
+    gap: 20px 20px;
+    flex-wrap: wrap;
+}
+
+.home .menu .item {
+    flex: 1 0 21%;
+    height: 160px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: 0.1s;
+    background-color: #323232;
+    border-radius: 3px;
+}
+
+.home .menu .item:hover {
+    transform: translateY(-7px);
+}
+
+.home .menu .item a {
+    margin: 5px;
+}
+
+.home .menu .item-icon,
+.home .menu .item-text h3,
+.home .menu .item-icon img {
+    background-color: #323232;
+}
+
+.home .menu .item-icon img {
+    height: 60px;
+    background-color: #323232;
+}

@@ -1,0 +1,58 @@
+.accountListItem {
+    border-radius: 3px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    transition: 0.1s;
+    background-color: #127350;
+    display: flex;
+    flex-direction: row;
+}
+
+.accountListItem.inactive {
+    filter: brightness(35%);
+}
+
+.accountListItem:hover {
+    transform: translateX(-8px);
+}
+
+.accountListItem .text,
+.accountListItem .text h3,
+.accountListItem .text p {
+    background-color: inherit;
+}
+
+.accountListItem h3,
+.accountListItem p {
+    padding: 0 20px;
+}
+
+.accountListItem .text {
+    width: 85%;
+    transition: 0.3s;
+}
+
+.accountListItem .actions {
+    background-color: #093626;
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.accountListItem .actions button {
+    background-color: inherit;
+    flex-grow: 1;
+    border: none;
+    transition: 0.1s;
+}
+
+.accountListItem .actions button img {
+    height: 30px;
+    transition: 0.1s;
+    background-color: inherit;
+}
+
+.accountListItem .actions button img:hover {
+    transform: translateY(-5px);
+}

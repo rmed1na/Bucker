@@ -1,0 +1,34 @@
+.accounts {
+    width: 80%;
+    margin: 0 auto;      
+}
+
+.accounts .list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accounts .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accounts .header #addAccount {
+    width: inherit;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+}
+
+.accounts .header #addAccount span {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 3px;
+    color: inherit;
+}
+.accounts .header #addAccount img {
+    max-height: 25px;
+    margin-right: 3px;
+}

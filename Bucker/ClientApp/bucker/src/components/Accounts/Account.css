@@ -1,0 +1,80 @@
+.account {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.account .data {
+    display: flex;
+    flex-direction: column;
+}
+
+/* #region: Read */
+.account .data .read,
+.account .data .read h4,
+.account .data .read label {
+    background-color: rgb(27,27,27);
+}
+.account .data .read label { font-size: inherit; }
+.account .data .read {
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.account .data .read h4 {
+    margin: 15px 25px;
+}
+
+.account .data .read .readonlyData {
+    border-radius: 3px;
+}
+/* #endregion: Read */
+
+/* #region: Write */
+.account .data .write {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid rgb(60,60,60);
+    border-radius: 3px;
+}
+
+.account .data .write .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+    padding: 0 3px;
+}
+
+.account .data .write .textbox {
+    text-align: left;
+}
+
+.account .data .write .section {
+    margin: 5px 0 30px 0;
+}
+
+.account .data .write .section.actions {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.account .button,
+.account .button { 
+    height: 55px;
+    margin: 20px 5px;
+    flex-grow: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: 0.2s all;
+}
+
+.account .button:active {
+    transform: scale(0.98);
+}
+
+.account #description { width: 50%; }
+
+/* #endregion: Write */
