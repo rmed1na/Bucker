@@ -1,0 +1,26 @@
+.conceptListItem {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: #ffe11b;
+    color: #1F1F1F;
+    display: flex;
+    flex-direction: row;
+    padding: 7px;
+}
+
+.conceptListItem .header {
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+    color: inherit;
+}
+
+.conceptListItem .header .title,
+.conceptListItem .header .description {
+    margin: 5px;
+    background-color: inherit;
+    color: inherit;
+}
+
+.conceptListItem .header .title {
+    font-weight: 600;
+}
