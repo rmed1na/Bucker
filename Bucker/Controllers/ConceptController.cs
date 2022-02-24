@@ -47,9 +47,13 @@ namespace Bucker.Controllers
 
         [HttpGet]
         [Route("user/{userId:int}")]
-        public async Task<IActionResult> GetAllUserConceptsAsync(int userId)
+        public async Task<IActionResult> GetAllUserConceptsAsync(int userId, bool onlyParents = false)
         {
             var concepts = await _conceptRepository.GetAllAsync(userId);
+
+            if (onlyParents)
+                return Ok(concepts.Where(c => !c.ParentConceptId.HasValue).ToList());
+
             return Ok(concepts);
         }
     }

@@ -6,8 +6,9 @@ import Home from './Home/Home';
 import Login from './Auth/Login';
 import Logout from './Auth/Logout';
 import Accounts from './Accounts/Accounts';
-import Account from './Accounts/AccountData';
+import AccountData from './Accounts/AccountData';
 import Concepts from './Concepts/Concepts';
+import ConceptData from './Concepts/ConceptData';
 import './common/styles.css';
 import './App.css';
 
@@ -46,13 +47,19 @@ function App() {
 
         <Route path='/account' element={
           <PrivateRoute>
-            <Account />
+            <AccountData />
           </PrivateRoute>
         } />
 
         <Route path='/concepts' element={
           <PrivateRoute>
             <Concepts />
+          </PrivateRoute>
+        } />
+
+        <Route path='/concept' element={
+          <PrivateRoute>
+            <ConceptData />
           </PrivateRoute>
         } />
       </Routes>

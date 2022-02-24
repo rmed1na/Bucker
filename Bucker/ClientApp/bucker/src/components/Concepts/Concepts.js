@@ -10,16 +10,15 @@ import ConceptListItem from './ConceptListItem';
 
 export default function Concepts() {
     const [isLoading, setIsLoading] = useState(true);
-    const [authData] = useState(StorageHelper.getAuthData());
     const [userData] = useState(StorageHelper.getUserData());
-    const [concepts, setConcepts] = useState(null);
+    const [parentConcepts, setParentConcepts] = useState(null);
     const [isEmptyBannerVisible, setIsEmptyBannerVisible] = useState(false);
     const [conceptsList, setConceptsList] = useState(null);
 
     useEffect(() => {
         const getConcepts = async () => {
-            let concepts = await Fetcher.call('GET', `concept/user/${userData.id}`);
-            setConcepts(concepts);
+            let concepts = await Fetcher.call('GET', `concept/user/${userData.id}/?onlyParents=true`);
+            setParentConcepts(concepts);
             setIsLoading(false);
         }
 
@@ -27,9 +26,9 @@ export default function Concepts() {
     }, []);
 
     useEffect(() => {
-        setIsEmptyBannerVisible(!concepts || concepts.length == 0);
-        setConceptsList(getConceptsList(concepts));
-    }, [concepts]);
+        setIsEmptyBannerVisible(!parentConcepts || parentConcepts.length == 0);
+        setConceptsList(getConceptsList(parentConcepts));
+    }, [parentConcepts]);
 
     function getConceptsList(concepts) {
         return concepts?.map((concept) => 
@@ -38,6 +37,8 @@ export default function Concepts() {
             key={concept.conceptId.toString()}
             name={concept.name}
             description={concept.description}
+            creationDate={concept.createdDate}
+            lastUpdate={concept.updatedDate}
          />
         );
     }
