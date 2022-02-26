@@ -9,5 +9,6 @@ namespace Bucker.Data.Repositories
         Task AddAsync(Concept concept);
         Task<IList<Concept>> GetAllAsync(bool onlyActive = true);
         Task<IList<Concept>> GetAllAsync(int userId);
+        Task<IList<Concept>> GetChildsAsync(int parentConceptId);
     }
 }

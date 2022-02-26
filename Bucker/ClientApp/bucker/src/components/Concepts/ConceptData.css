@@ -1,0 +1,43 @@
+.conceptData .data .read {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: rgb(27,27,27);
+    border-radius: 3px;
+}
+
+.conceptData .data .read h4 {
+    margin: 15px 25px;
+    font-size: 1.125rem;
+    background-color: inherit;
+}
+
+.conceptData .data .write {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid rgb(60,60,60);
+    border-radius: 3px;
+}
+
+.conceptData .data .write .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+    padding: 0 3px;
+}
+
+.conceptData .data .write .textbox {
+    text-align: left;
+}
+
+.conceptData .data .write .section {
+    margin: 5px 0 30px 0;
+}
+
+.conceptData .data .sub-concepts {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}

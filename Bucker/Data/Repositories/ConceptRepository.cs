@@ -33,5 +33,12 @@ namespace Bucker.Data.Repositories
                 .Where(x => x.OwnerUserId.Value == userId)
                 .ToListAsync();
         }
+
+        public async Task<IList<Concept>> GetChildsAsync(int parentConceptId)
+        {
+            return await _context.Concepts
+                .Where(x => x.ParentConceptId.HasValue && x.ParentConceptId.Value == parentConceptId)
+                .ToListAsync();
+        }
     }
 }

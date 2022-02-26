@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Loader from '../common/Loader';
+import Fetcher from '../Utilities/Fetcher';
 import './ConceptData.css';
+import ConceptListItem from './ConceptListItem';
 
 export default function Concept(props) {
     const location = useLocation();
     const [isLoading, setIsLoading] = useState(false);
     const [conceptData, setConceptData] = useState(() => getConceptDataFromLocation());
+    const [subConcepts, setSubConcepts] = useState(null);
+    const [subConceptsList, setSubConceptsList] = useState(null);
+
+    useEffect(() => {
+        const getSubConcepts = async () => {
+            let subConcepts = await Fetcher.call('GET', `concept/childs/${conceptData.id}`);
+            setSubConcepts(subConcepts);            
+            setIsLoading(false);
+        }
+
+        if (conceptData.id !== 0) {
+            setIsLoading(true);
+            getSubConcepts();
+        }
+    }, [conceptData]);
+
+    useEffect(() => {
+        if (subConcepts && subConcepts.length > 0) {
+            setSubConceptsList(getSubConceptsList(subConcepts));
+        }
+    }, [subConcepts]);
 
     function getConceptDataFromLocation() {
         if (location.state?.concept) {
             let concept = location.state.concept;
-            console.log(concept);
             return {
                 id: concept.id,
                 name: concept.name,
@@ -31,8 +53,22 @@ export default function Concept(props) {
         }
     }
 
+    function getSubConceptsList(subConcepts) {
+        return subConcepts?.map(sc => 
+            <ConceptListItem
+                id={sc.conceptId}
+                key={sc.conceptId.toString()}
+                name={sc.name}
+                description={sc.description}
+                creationDate={sc.createdDate}
+                lastUpdate={sc.updatedDate}
+         />);
+    }
+
     const handleNameChange = (name) => setConceptData({...conceptData, name});
     const handleDescriptionChange = (description) => setConceptData({...conceptData, description});
+
+
 
     return (
         <div>
@@ -52,7 +88,7 @@ export default function Concept(props) {
                     </div>
                     <div className='write'>
                         <div className='section'>
-                            <h4>Name</h4>
+                            <h4 className='title'>Name</h4>
                             <input 
                                 className='textbox' 
                                 type='text'
@@ -62,7 +98,7 @@ export default function Concept(props) {
                             </input>
                         </div>
                         <div className='section'>
-                            <h4>Description</h4>
+                            <h4 className='title'>Description</h4>
                             <input
                                 className='textbox'
                                 type='text'
@@ -70,6 +106,11 @@ export default function Concept(props) {
                                 onChange={e => handleDescriptionChange(e.target.value)}>
                             </input>
                         </div>
+                    </div>
+                    <h2>Sub concepts</h2>
+                    <hr />
+                    <div className='sub-concepts'>
+                        {subConceptsList}
                     </div>
                 </div>
             </div>

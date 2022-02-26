@@ -56,5 +56,14 @@ namespace Bucker.Controllers
 
             return Ok(concepts);
         }
+
+        [HttpGet]
+        [Route("childs/{parentConceptId:int}")]
+        public async Task<IActionResult> GetConceptChilds(int parentConceptId)
+        {
+            var childs = await _conceptRepository.GetChildsAsync(parentConceptId);
+
+            return Ok(childs);
+        }
     }
 }
