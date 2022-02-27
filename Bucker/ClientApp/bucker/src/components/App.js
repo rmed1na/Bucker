@@ -57,7 +57,7 @@ function App() {
           </PrivateRoute>
         } />
 
-        <Route path='/concept' element={
+        <Route path='/concept/:id' element={
           <PrivateRoute>
             <ConceptData />
           </PrivateRoute>

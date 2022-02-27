@@ -1,56 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Loader from '../common/Loader';
 import Fetcher from '../Utilities/Fetcher';
 import './ConceptData.css';
 import ConceptListItem from './ConceptListItem';
 
-export default function Concept(props) {
-    const location = useLocation();
-    const [isLoading, setIsLoading] = useState(false);
-    const [conceptData, setConceptData] = useState(() => getConceptDataFromLocation());
+export default function ConceptData(props) {
+    const { id } = useParams() || 0;
+    const [conceptId, setConceptId] = useState(id);
+    const [isLoading, setIsLoading] = useState(true);
+    const [conceptData, setConceptData] = useState(null);
     const [subConcepts, setSubConcepts] = useState(null);
     const [subConceptsList, setSubConceptsList] = useState(null);
 
+    // If URL param changes (id) state needs to be updated and page refreshed
+    if (id !== conceptId) {
+        setConceptId(id);
+    }
+
     useEffect(() => {
-        const getSubConcepts = async () => {
+        getSetConceptData();
+    }, []);
+
+    useEffect(() => {
+        const getSetSubConcepts = async () => {
             let subConcepts = await Fetcher.call('GET', `concept/childs/${conceptData.id}`);
             setSubConcepts(subConcepts);            
             setIsLoading(false);
         }
 
-        if (conceptData.id !== 0) {
+        if (conceptData && conceptData.id !== 0) {
             setIsLoading(true);
-            getSubConcepts();
+            getSetSubConcepts();
         }
     }, [conceptData]);
 
     useEffect(() => {
-        if (subConcepts && subConcepts.length > 0) {
+        if (subConcepts) {
             setSubConceptsList(getSubConceptsList(subConcepts));
         }
     }, [subConcepts]);
 
-    function getConceptDataFromLocation() {
-        if (location.state?.concept) {
-            let concept = location.state.concept;
-            return {
-                id: concept.id,
-                name: concept.name,
-                description: concept.description,
-                creationDate: concept.creationDate,
-                lastUpdate: concept.lastUpdate
-            }
-        }
+    useEffect(() => {
+        getSetConceptData();
+    }, [conceptId]);
 
-        return {
-            id: 0,
-            name: '',
-            description: '',
-            creationDate: '',
-            lastUpdate: ''
-        }
+    function getSetConceptData() {
+        setIsLoading(true);
+        Fetcher.call('GET', `concept/${conceptId}`)
+        .then(data => {
+            setConceptData({
+                id: data.conceptId,
+                name: data.name,
+                description: data.description,
+                creationDate: data.createdDate,
+                lastUpdate: data.updatedDate
+            });
+            setIsLoading(false);
+        });
     }
 
     function getSubConceptsList(subConcepts) {
@@ -67,8 +75,10 @@ export default function Concept(props) {
 
     const handleNameChange = (name) => setConceptData({...conceptData, name});
     const handleDescriptionChange = (description) => setConceptData({...conceptData, description});
-
-
+    
+    if (isLoading) {
+        return <Loader isLoading={isLoading} text='Loading concept...'/>;
+    }
 
     return (
         <div>

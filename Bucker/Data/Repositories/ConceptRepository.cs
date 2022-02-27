@@ -20,6 +20,11 @@ namespace Bucker.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Concept> GetAsync(int conceptId)
+        {
+            return await _context.Concepts.FirstOrDefaultAsync(x => x.ConceptId == conceptId);
+        }
+
         public async Task<IList<Concept>> GetAllAsync(bool onlyActive = true)
         {
             return await _context.Concepts

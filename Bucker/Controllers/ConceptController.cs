@@ -38,6 +38,14 @@ namespace Bucker.Controllers
         }
 
         [HttpGet]
+        [Route("{conceptId:int}")]
+        public async Task<IActionResult> GetConcept(int conceptId)
+        {
+            var concept = await _conceptRepository.GetAsync(conceptId);
+            return Ok(concept);
+        }
+
+        [HttpGet]
         [Route("all")]
         public async Task<IActionResult> GetAllAsync()
         {

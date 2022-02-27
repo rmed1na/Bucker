@@ -4,17 +4,9 @@ import './ConceptListItem.css';
 
 export default function ConceptListItem(props) {
     const navigate = useNavigate();
-    
+
     function onItemClick() {
-        navigate('/concept', { state: {
-            concept: {
-                id: props.id,
-                name: props.name,
-                description: props.description,
-                creationDate: props.creationDate,
-                lastUpdate: props.lastUpdate
-            }
-        }})
+        navigate(`/concept/${props.id}`);
     }
 
     return (
