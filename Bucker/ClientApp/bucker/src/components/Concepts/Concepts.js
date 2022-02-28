@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Loader from '../common/Loader';
 import Navbar from '../Navbar';
 import EmptySpace from '../common/EmptySpace';
@@ -9,6 +10,7 @@ import './Concepts.css';
 import ConceptListItem from './ConceptListItem';
 
 export default function Concepts() {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [userData] = useState(StorageHelper.getUserData());
     const [parentConcepts, setParentConcepts] = useState(null);
@@ -50,7 +52,7 @@ export default function Concepts() {
             <div className='concepts component'>
                 <div className='header'>
                     <h1>Concepts</h1>
-                    <button id='addConcept' className='button grey' onClick={() => alert('code me')}>
+                    <button id='addConcept' className='button grey' onClick={() => navigate('/concept/0')}>
                         <img src={Icons.addWhite}/>
                         <span>Add</span>
                     </button>

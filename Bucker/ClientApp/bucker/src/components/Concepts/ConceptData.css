@@ -36,8 +36,27 @@
     margin: 5px 0 30px 0;
 }
 
+.conceptData .data .write .section.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.conceptData .data .write .section.actions .button {
+    flex-grow: 1;
+    height: 55px;
+    margin: 0 5px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: 0.2s all;
+}
+
 .conceptData .data .sub-concepts {
     display: flex;
     flex-direction: row;
     gap: 15px;
+}
+
+.conceptData #description {
+    width: 50%;
 }

@@ -66,12 +66,29 @@ namespace Bucker.Controllers
         }
 
         [HttpGet]
-        [Route("childs/{parentConceptId:int}")]
+        [Route("{parentConceptId:int}/childs")]
         public async Task<IActionResult> GetConceptChilds(int parentConceptId)
         {
             var childs = await _conceptRepository.GetChildsAsync(parentConceptId);
 
             return Ok(childs);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task<IActionResult> UpdateConceptAsync([FromBody] ConceptUpdateRequest request)
+        {
+            var concept = await _conceptRepository.GetAsync(request.Id);
+
+            if (concept == null)
+                return NotFound($"Concept with identifier {request.Id} wasn't found");
+
+            concept.Name = request.Name;
+            concept.Description = request.Description;
+
+            await _conceptRepository.UpdateAsync(concept);
+
+            return Ok(concept);
         }
     }
 }
