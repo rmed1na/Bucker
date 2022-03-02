@@ -6,6 +6,12 @@
     border-radius: 3px;
 }
 
+.conceptData .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .conceptData .data .read h4 {
     margin: 15px 25px;
     font-size: 1.125rem;
@@ -59,4 +65,23 @@
 
 .conceptData #description {
     width: 50%;
+}
+
+.conceptData .header #addSubConcept {
+    width: inherit;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+}
+
+.conceptData .header #addSubConcept span {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 3px;
+    color: inherit;
+}
+
+.conceptData .header #addSubConcept img {
+    max-height: 25px;
+    margin-right: 3px;
 }

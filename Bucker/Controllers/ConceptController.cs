@@ -29,7 +29,8 @@ namespace Bucker.Controllers
             {
                 Name = request.Name,
                 Description = string.IsNullOrWhiteSpace(request.Description) ? null : request.Description,
-                ParentConceptId = request.ParentId
+                ParentConceptId = request.ParentId,
+                OwnerUserId = request.OwnerUserId
             };
 
             await _conceptRepository.AddAsync(concept);

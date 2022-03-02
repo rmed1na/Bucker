@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import Navbar from '../Navbar';
+import ConceptListItem from './ConceptListItem';
 import Loader from '../common/Loader';
 import Fetcher from '../Utilities/Fetcher';
+import StorageHelper from '../Utilities/StorageHelper';
+import Icons from '../common/Icons';
 import './ConceptData.css';
-import ConceptListItem from './ConceptListItem';
+
 
 export default function ConceptData() {
     const navigate = useNavigate();
-    const { id } = useParams() || 0;
+    const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const isCreateView = id == 0;
+    const emptyConcept = { id: 0, name: '', description: '', creationDate: null, lastUpdate: null };
     const [conceptId, setConceptId] = useState(id);
-    const emptyConcept = { id: 0, name: null, description: null, creationDate: null, lastUpdate: null }
-    const [isCreateView] = useState(id == 0);
+    const parentConceptId = searchParams.get('parentConceptId');
     const [isLoading, setIsLoading] = useState(!isCreateView);
     const [conceptData, setConceptData] = useState(emptyConcept);
     const [subConcepts, setSubConcepts] = useState(null);
     const [subConceptsList, setSubConceptsList] = useState(null);
+    const subConceptsSectionStyle = isCreateView ? 'none' : '';
 
     // If URL param changes (id) state needs to be updated and page refreshed
     if (id !== conceptId) {
@@ -46,7 +52,7 @@ export default function ConceptData() {
         if (!isCreateView) {
             setIsLoading(true);
             Fetcher.call('GET', `concept/${conceptId}`)
-            .then(data => {
+                .then(data => {
                     if (data) {
                         setConceptData({
                             id: data.conceptId,
@@ -59,7 +65,10 @@ export default function ConceptData() {
                         getSetSubConcepts(data.conceptId);
                     }
                     setIsLoading(false);
-            });
+                });
+        } else {
+            setConceptData(emptyConcept);
+            setSubConcepts([]);
         }
     }
 
@@ -93,6 +102,24 @@ export default function ConceptData() {
         });
     }
 
+    function createNewConcept() {
+        let userData = StorageHelper.getUserData(); //TODO: Handle user identifier on backend (from JWT) to avoid client-side data manipulation
+        setIsLoading(true);
+        Fetcher.call('POST', 'concept/add', {
+            name: conceptData.name,
+            description: conceptData.description,
+            ownerUserId: userData.id,
+            parentId: parentConceptId
+        }).then(data => {
+            setIsLoading(false);
+            navigate(`/concept/${data.conceptId}`);
+        });
+    }
+
+    const onCreateNewSubConceptClick = () => navigate({
+        pathname: '/concept/0',
+        search: `?parentConceptId=${conceptData.id}`
+    });
     const handleNameChange = (name) => setConceptData({ ...conceptData, name });
     const handleDescriptionChange = (description) => setConceptData({ ...conceptData, description });
 
@@ -106,9 +133,9 @@ export default function ConceptData() {
 
             <div className='component conceptData'>
                 <div className='header'>
-                    <h1>{isCreateView ? 'New' : conceptData.name} concept details</h1>
-                    <hr className='margin-top margin-bottom' />
+                    <h1>{isCreateView ? 'New' : conceptData.name} {parentConceptId ? 'sub' : ''} concept details</h1>
                 </div>
+                <hr className='margin-top margin-bottom' />
                 <div className='data'>
                     <div className='read'>
                         <h4>Identifier:&nbsp;{conceptData.id}</h4>
@@ -137,15 +164,23 @@ export default function ConceptData() {
                             </input>
                         </div>
                         <div className='section actions'>
-                            {isCreateView && <button className='button yellow'>Create concept</button>}
+                            {isCreateView && <button className='button yellow' onClick={() => createNewConcept()}>Create concept</button>}
                             {!isCreateView && <button className='button green' onClick={() => updateConceptDetails()}>Update concept details</button>}
                             <button className='button red' onClick={() => navigate('/concepts')}>Go back</button>
                         </div>
                     </div>
-                    <h2>Sub concepts</h2>
-                    <hr />
-                    <div className='sub-concepts'>
-                        {subConceptsList}
+                    <div style={{ display: subConceptsSectionStyle }}>
+                        <div className='header'>
+                            <h2>Sub concepts</h2>
+                            <button id='addSubConcept' className='button grey' onClick={() => onCreateNewSubConceptClick()}>
+                                <img src={Icons.addWhite} />
+                                <span>Add</span>
+                            </button>
+                        </div>
+                        <hr />
+                        <div className='sub-concepts'>
+                            {subConceptsList}
+                        </div>
                     </div>
                 </div>
             </div>
