@@ -1,0 +1,88 @@
+.conceptData .data .read {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: rgb(27,27,27);
+    border-radius: 3px;
+}
+
+.conceptData .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conceptData .data .read h4 {
+    margin: 15px 25px;
+    font-size: 1.125rem;
+    background-color: inherit;
+}
+
+.conceptData .data .write {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid rgb(60,60,60);
+    border-radius: 3px;
+}
+
+.conceptData .data .write .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+    padding: 0 3px;
+}
+
+.conceptData .data .write .textbox {
+    text-align: left;
+}
+
+.conceptData .data .write .section {
+    margin: 5px 0 30px 0;
+}
+
+.conceptData .data .write .section.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.conceptData .data .write .section.actions .button {
+    flex-grow: 1;
+    height: 55px;
+    margin: 0 5px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: 0.2s all;
+}
+
+.conceptData .data .sub-concepts {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.conceptData #description {
+    width: 50%;
+}
+
+.conceptData .header #addSubConcept {
+    width: inherit;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+}
+
+.conceptData .header #addSubConcept span {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 3px;
+    color: inherit;
+}
+
+.conceptData .header #addSubConcept img {
+    max-height: 25px;
+    margin-right: 3px;
+}

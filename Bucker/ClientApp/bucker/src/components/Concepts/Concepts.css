@@ -1,0 +1,31 @@
+.concepts .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.concepts .header #addConcept {
+    width: inherit;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+}
+
+.concepts .header #addConcept span {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 3px;
+    color: inherit;
+}
+
+.concepts .header #addConcept img {
+    max-height: 25px;
+    margin-right: 3px;
+}
+
+.concepts .list {
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

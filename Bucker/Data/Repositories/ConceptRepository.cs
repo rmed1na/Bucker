@@ -2,6 +2,7 @@
 using Bucker.Data.Models;
 using Bucker.Models.Enums;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,11 @@ namespace Bucker.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Concept> GetAsync(int conceptId)
+        {
+            return await _context.Concepts.FirstOrDefaultAsync(x => x.ConceptId == conceptId);
+        }
+
         public async Task<IList<Concept>> GetAllAsync(bool onlyActive = true)
         {
             return await _context.Concepts
@@ -32,6 +38,20 @@ namespace Bucker.Data.Repositories
             return await _context.Concepts
                 .Where(x => x.OwnerUserId.Value == userId)
                 .ToListAsync();
+        }
+
+        public async Task<IList<Concept>> GetChildsAsync(int parentConceptId)
+        {
+            return await _context.Concepts
+                .Where(x => x.ParentConceptId.HasValue && x.ParentConceptId.Value == parentConceptId)
+                .ToListAsync();
+        }
+
+        public async Task<Concept> UpdateAsync(Concept concept)
+        {
+            concept.UpdatedDate = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
+            return concept;
         }
     }
 }

@@ -3,14 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Fetcher from '../Utilities/Fetcher';
 import Loader from '../common/Loader';
-import './Account.css';
+import StorageHelper from '../Utilities/StorageHelper';
+import './AccountData.css';
 
 export default function Account() {
     const location = useLocation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [accountData, setAccountData] = useState(() => getAccountDataFromLocation());
-    const [authData, setAuthData] = useState(() => getAuthData());
+    const [authData] = useState(() => StorageHelper.getAuthData());
     const [isCreateView, setIsCreateView] = useState(() => accountData.id === 0);
     const [isUpdateView, setIsUpdateView] = useState(() => accountData.id > 0);
     
@@ -117,8 +118,4 @@ export default function Account() {
             </div>
         </div>
     )
-}
-
-function getAuthData() {
-    return JSON.parse(sessionStorage.getItem('auth'));
 }

@@ -23,6 +23,7 @@
 
 .account .data .read h4 {
     margin: 15px 25px;
+    font-size: 1.125rem;
 }
 
 .account .data .read .readonlyData {
@@ -61,7 +62,6 @@
     justify-content: center;
 }
 
-.account .button,
 .account .button { 
     height: 55px;
     margin: 20px 5px;
@@ -69,10 +69,6 @@
     font-size: 1.25rem;
     font-weight: 500;
     transition: 0.2s all;
-}
-
-.account .button:active {
-    transform: scale(0.98);
 }
 
 .account #description { width: 50%; }

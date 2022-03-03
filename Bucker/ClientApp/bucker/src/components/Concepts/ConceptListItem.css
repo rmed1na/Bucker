@@ -1,0 +1,39 @@
+.conceptListItem {
+    height: 100px;
+    border-radius: 3px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: #ffe11b;
+    color: #1F1F1F;
+    padding: 7px;
+    transition: 0.1s;
+    cursor: pointer;
+    flex: 0 0 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.conceptListItem:hover {
+    transform: translateY(-5px);
+}
+
+.conceptListItem .header {
+    background-color: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.conceptListItem .header .title,
+.conceptListItem .header .description {
+    margin: 5px;
+    background-color: inherit;
+    color: inherit;
+}
+
+.conceptListItem .header .title {
+    font-weight: 600;
+    border-bottom: 1px solid black;
+}
