@@ -177,7 +177,7 @@ export default function ConceptData() {
                                 <span>Add</span>
                             </button>
                         </div>
-                        <hr />
+                        <hr className='margin-bottom' />
                         <div className='sub-concepts'>
                             {subConceptsList}
                         </div>
