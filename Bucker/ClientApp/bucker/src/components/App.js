@@ -9,8 +9,8 @@ import Accounts from './Accounts/Accounts';
 import AccountData from './Accounts/AccountData';
 import Concepts from './Concepts/Concepts';
 import ConceptData from './Concepts/ConceptData';
+import Transactions from './Transactions/Transactions';
 import './common/styles.css';
-import './App.css';
 
 function App() {
   return (
@@ -19,49 +19,16 @@ function App() {
         {/* Public routes */}
         <Route path='/login' element={<Login />} />
 
-
         {/* Private routes */}
-        <Route path='/' element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        } />
-        
-        <Route path='/home' element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        } />
-        
-        <Route path='/logout' element={
-          <PrivateRoute>
-            <Logout />
-          </PrivateRoute>
-        } />
+        <Route path='/' element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route path='/home' element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route path='/logout' element={<PrivateRoute><Logout /></PrivateRoute>} />
+        <Route path='/accounts' element={<PrivateRoute><Accounts /></PrivateRoute>} />
+        <Route path='/account' element={<PrivateRoute><AccountData /></PrivateRoute>} />
+        <Route path='/concepts' element={<PrivateRoute><Concepts /></PrivateRoute>} />
+        <Route path='/concept/:id' element={<PrivateRoute><ConceptData /></PrivateRoute>} />
+        <Route path='/transactions' element={<PrivateRoute><Transactions /></PrivateRoute>}/>
 
-        <Route path='/accounts' element={
-          <PrivateRoute>
-            <Accounts />
-          </PrivateRoute>
-        } />
-
-        <Route path='/account' element={
-          <PrivateRoute>
-            <AccountData />
-          </PrivateRoute>
-        } />
-
-        <Route path='/concepts' element={
-          <PrivateRoute>
-            <Concepts />
-          </PrivateRoute>
-        } />
-
-        <Route path='/concept/:id' element={
-          <PrivateRoute>
-            <ConceptData />
-          </PrivateRoute>
-        } />
       </Routes>
     </BrowserRouter>
   );

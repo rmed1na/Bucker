@@ -1,3 +1,4 @@
+import './Concepts.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../common/Loader';
@@ -6,7 +7,6 @@ import EmptySpace from '../common/EmptySpace';
 import StorageHelper from '../Utilities/StorageHelper';
 import Fetcher from '../Utilities/Fetcher';
 import Icons from '../common/Icons';
-import './Concepts.css';
 import ConceptListItem from './ConceptListItem';
 
 export default function Concepts() {

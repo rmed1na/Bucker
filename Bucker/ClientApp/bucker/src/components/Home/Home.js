@@ -1,6 +1,6 @@
+import './Home.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
 import Navbar from '../Navbar';
 import StorageHelper from '../Utilities/StorageHelper';
 import Fetcher from '../Utilities/Fetcher';
@@ -44,7 +44,7 @@ function Home() {
             </div>
             <div className='menu'>
                 <div className='item'>
-                    <a href='#'>
+                    <a href='/transactions'>
                         <div className='item-icon'>
                             <img src={transactionsLogo}/>
                         </div>
