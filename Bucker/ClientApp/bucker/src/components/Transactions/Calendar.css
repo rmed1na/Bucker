@@ -1,0 +1,39 @@
+.calendar .header .month {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.calendar .header .month .arrow {
+    text-align: center;
+    cursor: pointer;
+}
+
+.calendar .header .day {
+    background-color: rgb(27,27,27);
+}
+
+.calendar .header .day,
+.calendar .grid .week {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.calendar .grid .week {
+    margin: 15px 0;
+}
+
+.calendar .header .day h6,
+.calendar .grid .day {
+    width: 30px;
+    text-align: center;
+}
+
+.calendar .header .day h6 {
+    margin: 15px 0;
+    font-weight: 600;
+    color: rgb(136, 136, 136);
+    background-color: inherit;
+}

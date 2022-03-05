@@ -1,0 +1,7 @@
+.transactions .content {
+    display: flex;
+}
+
+.transactions .calendar {
+    width: 100%;
+}

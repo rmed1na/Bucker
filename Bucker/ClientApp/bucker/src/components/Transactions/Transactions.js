@@ -1,6 +1,7 @@
 import './Transactions.css';
 import React from 'react';
 import Navbar from '../Navbar';
+import Calendar from './Calendar';
 
 export default function Transactions() {
     return (
@@ -9,7 +10,10 @@ export default function Transactions() {
             <div className='component transactions'>
                 <div className='header'>
                     <h1>Transactions</h1>
-                    <hr className='margin-bottom' />
+                    <hr />
+                </div>
+                <div className='content'>
+                    <Calendar />
                 </div>
             </div>
         </div>
