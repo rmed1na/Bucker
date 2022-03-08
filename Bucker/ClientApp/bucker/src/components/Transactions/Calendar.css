@@ -6,8 +6,8 @@
 }
 
 .calendar .header .month .arrow {
-    text-align: center;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .calendar .header .day {

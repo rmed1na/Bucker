@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 import moment from 'moment';
 
 export default function Calendar() {
-    const selectedDate = new Date();
-    const [selectedDateStr] = useState(`${selectedDate.getFullYear()}-${selectedDate.getMonth()+1}-${selectedDate.getDate()}`);
-    const [value, setValue] = useState(moment(selectedDateStr));
+    const [date, setDate] = useState(new Date());
+    const [dateStr, setDateStr] = useState(dateToString(date));
+    const [momentValue, setMomentValue] = useState(moment(dateStr));
     const [calendar, setCalendar] = useState([]);
-    const startDay = value.clone().startOf("month").startOf("week");
-    const endDay = value.clone().endOf("month").endOf("week");
-    const day = startDay.clone().subtract(1, "day");
+    const calendarStartDay = momentValue.clone().startOf("month").startOf("week");
+    const calendarEndDay = momentValue.clone().endOf("month").endOf("week");
+    const calendarDay = calendarStartDay.clone().subtract(1, "day");
 
     const dayNames = [ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa' ];
 
@@ -17,37 +17,65 @@ export default function Calendar() {
         setCalendar(fillCalendar());
     }, []);
 
+    useEffect(() => {
+        setMomentValue(moment(dateStr));
+    }, [dateStr]);
+
+    useEffect(() => {
+        setCalendar(fillCalendar());
+    }, [momentValue]);
+
     function fillCalendar() {
         let calgrid = [];
 
-        while (day.isBefore(endDay, "day")) {
+        while (calendarDay.isBefore(calendarEndDay, "day")) {
             calgrid.push(
-                Array(7).fill(0).map(() => day.add(1, "day").clone())
+                Array(7).fill(0).map(() => calendarDay.add(1, "day").clone())
             )
         }
 
         return calgrid;
     }
 
+    function onPreviousMonthClick() {
+        let newDate = new Date(date.getTime());
+
+        newDate.setMonth(newDate.getMonth() - 1);
+        setDate(newDate);
+        setDateStr(dateToString(newDate));
+    }
+
+    function onNextMonthClick() {
+        let newDate = new Date(date.getTime());
+
+        newDate.setMonth(newDate.getMonth() + 1);
+        setDate(newDate);
+        setDateStr(dateToString(newDate));
+    }
+
+    function dateToString(dt) {
+        return `${dt.getFullYear()}-${dt.getMonth()+1}-${dt.getDate()}`;
+    }
+
     return (
         <div className='calendar'>
             <div className='header'>
                 <div className='month'>
-                    <span className='arrow left styled'>Previous</span>
-                    <h3>{selectedDate.toLocaleDateString('default', { month: 'long' })}</h3>
-                    <span className='arrow right styled'>&gt;</span>
+                    <span className='arrow styled' onClick={() => onPreviousMonthClick()}>&lt;</span>
+                    <h3>{date.toLocaleDateString('default', { month: 'long' })} {date.getFullYear()}</h3>
+                    <span className='arrow styled' onClick={() => onNextMonthClick()}>&gt;</span>
                 </div>
                 <div className='day'>
                     {dayNames.map(day => (
-                        <h6>{day}</h6>
+                        <h6 key={day}>{day}</h6>
                     ))}
                 </div>
             </div>
             <div className='grid'>
                 {calendar.map((week) => (
-                    <div className='week'>
+                    <div key={week} className='week'>
                         {week.map((day) => (
-                            <div className='day'>{day.format("D").toString()}</div>
+                            <div key={`${calendar.indexOf(week)}-${day.format("D").toString()}`} className='day'>{day.format("D").toString()}</div>
                         ))}
                     </div>
                 ))}

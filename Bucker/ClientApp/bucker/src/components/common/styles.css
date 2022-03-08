@@ -26,16 +26,14 @@ span {
     background-color: inherit;
 }
 
+span.styled,
 a.styled {
     background-color: #2E2E2E;
     padding: 6px;
     border-radius: 3px;
 }
 
-.root {
-    position: relative;
-}
-
+.root { position: relative; }
 .textbox {
     background-color: #3b3b3b;
     border: none;
@@ -56,10 +54,7 @@ a.styled {
     transition: 0.2s all;
 }
 
-.button:active {
-    transform: scale(0.90);
-}
-
+.button:active { transform: scale(0.90); }
 .button.green { background-color: #127350; }
 .button.red { background-color: #9D262B; }
 .button.yellow { 
