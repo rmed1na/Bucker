@@ -14,6 +14,13 @@
     background-color: rgb(27,27,27);
 }
 
+.calendar .header .day h6 {
+    margin: 15px 0;
+    font-weight: 600;
+    color: rgb(136, 136, 136);
+    background-color: inherit;
+}
+
 .calendar .header .day,
 .calendar .grid .week {
     display: flex;
@@ -22,18 +29,21 @@
 }
 
 .calendar .grid .week {
+    line-height: 1.5rem;
     margin: 15px 0;
 }
 
 .calendar .header .day h6,
 .calendar .grid .day {
-    width: 30px;
+    width: 40px;
     text-align: center;
 }
 
-.calendar .header .day h6 {
-    margin: 15px 0;
+.calendar .grid .day { cursor: pointer }
+
+.calendar .grid .selectedDay {
+    color: #1F1F1F;
+    background-color: #E6E6E6;
+    border-radius: 5px; 
     font-weight: 600;
-    color: rgb(136, 136, 136);
-    background-color: inherit;
 }

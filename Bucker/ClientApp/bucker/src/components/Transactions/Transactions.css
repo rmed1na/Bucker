@@ -1,7 +1,39 @@
 .transactions .content {
     display: flex;
+    flex-direction: column;
 }
 
-.transactions .calendar {
+.transactions > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transactions .header .add-btn {
+    width: inherit;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+}
+
+.transactions .header .add-btn span {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 3px;
+    color: inherit;
+}
+
+.transactions .header .add-btn img {
+    max-height: 25px;
+    margin-right: 3px;
+}
+
+.transactions .content .calendar {
     width: 100%;
+}
+
+.transactions .content .items .header {
+    display: flex;
+    justify-content: space-around;
+    text-align: left;
 }

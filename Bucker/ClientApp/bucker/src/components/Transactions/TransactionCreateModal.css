@@ -1,0 +1,35 @@
+.newTransaction {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    transform: translate(12.5%, 5%);
+    z-index: 10;
+    border-radius: 3px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+    transition: 0.2s all;
+}
+
+.newTransaction .content {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.newTransaction .content .header > h2, h4 {
+    margin: 15px 0;
+}
+
+.newTransaction .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.newTransaction .search-bar img {
+    max-height: 25px;
+    margin-right: 7px;
+}
+
+.newTransaction .search-bar input {
+    width: 100%;
+    text-align: left;
+}
