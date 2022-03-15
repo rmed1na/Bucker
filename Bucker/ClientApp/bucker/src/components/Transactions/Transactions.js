@@ -1,21 +1,22 @@
 import './Transactions.css';
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Navbar';
 import Calendar from './Calendar';
 import CreateModal from './TransactionCreateModal';
 import Icons from '../common/Icons';
 
 export default function Transactions() {
+    const [createModalVisible, setCreateModalVisible] = useState(false);
 
     function onAddNewTransactionClick() {
-        return <div>Hello world</div>
+        setCreateModalVisible(true);
     }
-
+    
     return (
         <div>
             <Navbar hasLogout={true} />
 
-            <CreateModal isVisible={true}/>
+            <CreateModal isVisible={createModalVisible} setIsVisible={() => setCreateModalVisible()}/>
             <div className='component transactions'>
                 <div className='header'>
                     <h1>Transactions</h1>

@@ -14,22 +14,70 @@
     margin: 0 auto;
 }
 
-.newTransaction .content .header > h2, h4 {
+.newTransaction .content .header > .title h2, h4 {
     margin: 15px 0;
 }
 
-.newTransaction .search-bar {
+.newTransaction .content .header .title {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 35px;
 }
 
-.newTransaction .search-bar img {
+.newTransaction .content .header .title .close-btn {
+    width: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.newTransaction .content .header .title .close-btn img {
+    max-height: 18px;
+}
+
+.newTransaction .content .search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.newTransaction .content .search-bar img {
     max-height: 25px;
     margin-right: 7px;
 }
 
-.newTransaction .search-bar input {
+.newTransaction .content .search-bar input {
     width: 100%;
     text-align: left;
+}
+
+.newTransaction .content .info-bar {
+    text-align: right;
+}
+
+.newTransaction .content .info-bar p {
+    color: rgb(136,136,136);
+}
+
+.newTransaction .content .list {
+    display: flex;
+    flex-direction: column;
+}
+
+.newTransaction .content .item {
+    overflow: hidden;
+}
+
+.newTransaction .content .account-item {
+    cursor: pointer;
+    transition: 0.1s;
+    padding: 1px 1px 0 5px;
+    border-radius: 3px;
+}
+
+.newTransaction .content .account-item h4,
+.newTransaction .content .account-item p {
+    background-color: inherit;
+}
+
+.newTransaction .content .account-item:hover {
+    background-color: #2E2E2E;
 }
