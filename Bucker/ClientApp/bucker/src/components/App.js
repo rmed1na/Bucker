@@ -1,3 +1,5 @@
+import './common/reset.css';
+import './common/styles.css';
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -10,7 +12,6 @@ import AccountData from './Accounts/AccountData';
 import Concepts from './Concepts/Concepts';
 import ConceptData from './Concepts/ConceptData';
 import Transactions from './Transactions/Transactions';
-import './common/styles.css';
 
 function App() {
   return (
